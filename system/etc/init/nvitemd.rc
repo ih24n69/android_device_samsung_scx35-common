@@ -1,5 +1,5 @@
 #nvitemd
-service nvitemd_td /system/bin/nvitemd t 0
+service nvitemd_td /system/bin/nvitemd td 0
     class core
     user system
     disabled

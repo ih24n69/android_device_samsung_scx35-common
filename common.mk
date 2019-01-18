@@ -20,7 +20,11 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from sprd-common device configuration
 $(call inherit-product, device/samsung/sprd-common/common.mk)
 
+ifeq ($(strip $(SOC_SCX35)),true)
+#Do nothing
+else
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
+endif
 
 # Audio
 PRODUCT_PACKAGES += \

@@ -26,10 +26,10 @@ TARGET_NO_BOOTLOADER := true
 BOARD_VENDOR := samsung
 
 # Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/scx35-common/bluetooth
 ifeq ($(strip $(SOC_SCX35)),true)
 BOARD_CUSTOM_BT_CONFIG := device/samsung/$(PRODUCT_DEVICE)/bluetooth/libbt_vndcfg.txt
 else
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/scx35-common/bluetooth
 USE_BLUETOOTH_BCM4343 := true
 BOARD_CUSTOM_BT_CONFIG := device/samsung/scx35-common/bluetooth/libbt_vndcfg.txt
 endif
