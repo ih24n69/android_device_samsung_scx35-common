@@ -26,9 +26,13 @@ TARGET_NO_BOOTLOADER := true
 BOARD_VENDOR := samsung
 
 # Bluetooth
-USE_BLUETOOTH_BCM4343 := true
+ifeq ($(strip $(SOC_SCX35)),true)
+BOARD_CUSTOM_BT_CONFIG := device/samsung/$(PRODUCT_DEVICE)/bluetooth/libbt_vndcfg.txt
+else
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/scx35-common/bluetooth
+USE_BLUETOOTH_BCM4343 := true
 BOARD_CUSTOM_BT_CONFIG := device/samsung/scx35-common/bluetooth/libbt_vndcfg.txt
+endif
 
 # RIL
 TARGET_DISABLE_ASHMEM_TRACKING := true
@@ -49,6 +53,9 @@ BOARD_CANT_REALLOCATE_OMX_BUFFERS := true
 #BOARD_SECCOMP_POLICY := device/samsung/scx35-common/seccomp # This flag is dead?
 
 # Kernel
+ifeq ($(strip $(SOC_SCX35)),true)
+#nothing todo
+else
 BOARD_CUSTOM_BOOTIMG_MK := device/samsung/scx35-common/mkbootimg.mk
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_TAGS_OFFSET := 0x01d88000
@@ -56,7 +63,7 @@ BOARD_RAMDISK_OFFSET := 0x01000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000
 BOARD_KERNEL_SEPARATED_DT := true
-BOARD_KERNEL_IMAGE_NAME := zImage
+endif
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-eabi-
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8/bin
 
@@ -67,7 +74,11 @@ EXTENDED_FONT_FOOTPRINT := true
 TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
 
 # PowerHAL
+ifeq ($(strip $(SOC_SCX35)),true)
+#nothing todo
+else
 TARGET_POWERHAL_VARIANT := scx35
+endif
 
 # Build system
 WITHOUT_CHECK_API := true
@@ -80,10 +91,15 @@ TARGET_LD_SHIM_LIBS := \
 	/system/vendor/bin/gpsd|libgps_shim.so
 
 # Init
+ifeq ($(strip $(SOC_SCX35)),true)
+#nothing todo
+else
+TARGET_UNIFIED_DEVICE := true
 TARGET_INIT_VENDOR_LIB := libinit_sec
+endif
 
 # Board specific features
-#TARGET_HAS_LEGACY_CAMERA_HAL1 := true
+# TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 
 # GPS
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/scx35-common/include

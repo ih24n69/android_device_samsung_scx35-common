@@ -91,7 +91,6 @@ PRODUCT_PACKAGES += \
 	modem_control
 
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.radio.modemtype=w \
 	rild.libpath=/system/vendor/lib/libsecril-shim.so
 
 PRODUCT_COPY_FILES += \
