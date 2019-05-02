@@ -91,12 +91,8 @@ TARGET_LD_SHIM_LIBS := \
 	/system/vendor/bin/gpsd|libgps_shim.so
 
 # Init
-ifeq ($(strip $(SOC_SCX35)),true)
-#nothing todo
-else
 TARGET_UNIFIED_DEVICE := true
 TARGET_INIT_VENDOR_LIB := libinit_sec
-endif
 
 # Board specific features
 # TARGET_HAS_LEGACY_CAMERA_HAL1 := true

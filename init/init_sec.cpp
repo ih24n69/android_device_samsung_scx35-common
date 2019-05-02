@@ -50,6 +50,8 @@ enum device_variant {
 	G361H,
 	G531BT,
 	G531H,
+	G355H,
+	G355M,
 	DEVICE_UNSUPPORTED,
 };
 
@@ -71,7 +73,12 @@ device_variant match(std::string bl)
 			return G531BT;
 	} else if (bl.find("G531H") != std::string::npos) {
 			return G531H;
-	} else {
+	} else if (bl.find("G355H") != std::string::npos) {
+			return G355H;
+	} else if (bl.find("G355M") != std::string::npos) {
+			return G355M;
+	}
+	 else {
 			return DEVICE_UNSUPPORTED;
 	}
 }
@@ -137,6 +144,16 @@ void vendor_load_properties()
 			/* grandprimeve3gxx */
 			property_override("ro.product.model", "SM-G531H");
 			property_override("ro.product.device", "grandprimeve3g");
+			break;
+		case G355H:
+			/* grandprimeve3gxx */
+			property_override("ro.product.model", "SM-G355H");
+			property_override("ro.product.device", "kanas");
+			break;
+		case G355M:
+			/* grandprimeve3gxx */
+			property_override("ro.product.model", "SM-G355M");
+			property_override("ro.product.device", "kanas");
 			break;
 		default:
 			break;
